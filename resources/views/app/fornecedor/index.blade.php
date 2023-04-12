@@ -1,19 +1,33 @@
 <h3>fornecedor</h3>
-
+{{-- nao afeta o array original --}}
 @php
 
 @endphp
-
 @isset($fornecedores)
-    Fornecedor: {{ $fornecedores[0]['nome'] }}
-    <br>
-    Status: {{ $fornecedores[0]['status'] }}
-    <br>
-    @isset($fornecedores[0]['cnpj'])
-        CNPJ: {{ $fornecedores[0]['cnpj']}}
-        @empty($fornecedores[0]['cnpj'])
-            - vazio
-        @endempty
-    @endisset
-@endisset
+    @forelse($fornecedores as $indice => $fornecedor)
 
+        Iteração atual: {{ $loop->iteration }}
+        <br>
+        Fornecedor: {{ $fornecedor['nome'] }}
+        <br>
+        Status: {{ $fornecedor['status'] }}
+        <br>
+        CNPJ: {{ $fornecedor['cnpj'] ?? '' }}
+        <br>
+        Telefone: {{ $fornecedor['ddd'] ?? '' }} {{ $fornecedor['telefone'] ?? '' }}
+        <br>
+        @if ($loop->first)
+            Primeira iteração do Loop
+        @endif
+
+        @if ($loop->last)
+            Ultima iteração do Loop
+
+            <br>
+            Total de registros: {{ $loop->count }}
+        @endif
+        <hr>
+    @empty
+        Não existem fornecedores cadastrado !!!
+    @endforelse
+@endisset
