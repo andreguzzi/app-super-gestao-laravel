@@ -8,7 +8,7 @@
  @endif
 
  <select name="fornecedor_id">
-     <option>--Selecioneum Fornecedor--</option>
+     <option>--Selecione um Fornecedor--</option>
 
      @foreach ($fornecedores as $fornecedor)
          <option value="{{ $fornecedor->id }}"
